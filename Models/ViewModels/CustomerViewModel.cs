@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SingularStaffOrders.Models.ViewModels
 {
-    public class EmployeeViewModel
+    public class CustomerViewModel
     {
         public int UserId { get; set; }
         [Display(Name = "First Name")]

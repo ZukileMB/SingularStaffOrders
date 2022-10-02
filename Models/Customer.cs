@@ -6,10 +6,10 @@ using System.Web;
 
 namespace SingularStaffOrders.Models
 {
-    public class Employee
+    public class Customer
     {
         [Key]
-        public int UserId { get; set; }
+        public int CustomerID { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string AddressType { get; set; }
@@ -17,5 +17,7 @@ namespace SingularStaffOrders.Models
         public string Surburb { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
+
+        public virtual ICollection<Orders> Orders { get; set; }
     }
 }

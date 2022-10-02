@@ -10,8 +10,11 @@ namespace SingularStaffOrders.Models.MyDBContext
     {
         public DatabaseContext() : base("MycontextDB")
         {
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseContext, Migrations.Configuration>());
         }
-        public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }

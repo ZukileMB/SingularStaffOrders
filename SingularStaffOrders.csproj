@@ -128,16 +128,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ControllerHelpers\ProductHelper.cs" />
-    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\MyDBContext\DatabaseContext.cs" />
-    <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\Products.cs" />
-    <Compile Include="Models\ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\OrderDetails.cs" />
+    <Compile Include="Models\Orders.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ViewModels\CustomerViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -34,7 +34,7 @@ namespace SingularStaffOrders.Controllers.ControllerHelpers
         /// <param name="productsViewModel"></param>
         public void SaveProducts(SingularStaffOrders.Models.ViewModels.ProductsViewModel productsViewModel )
         {
-            Products products = new Products();
+            Product products = new Product();
             products.ProductTitle = productsViewModel.ProductTitle;
             products.Description = productsViewModel.Description;
             products.UnitPrice = productsViewModel.Price;

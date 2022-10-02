@@ -13,7 +13,6 @@ namespace SingularStaffOrders.Controllers
         public ProductsController()
         { }
 
-        [Authorize]
         // GET: Products
         public ActionResult Index()
         {
@@ -23,4 +22,4 @@ namespace SingularStaffOrders.Controllers
         }
 
     }
-}
+} 

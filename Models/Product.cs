@@ -7,13 +7,16 @@ using System.Text;
 
 namespace SingularStaffOrders.Models
 {
-    public class Products
+    public class Product
     {
         [Key]
         public int ProductId { get; set; }
         public string ProductTitle { get; set; }
         public string Description { get; set; }
         public decimal UnitPrice { get; set; }
-        public string Image { get; set; } 
+        public string Image { get; set; }
+        public int Quantity { get; set; }
+
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }
