@@ -16,10 +16,27 @@ namespace SingularStaffOrders.Controllers.Helpers
         /// Get all Customers from the customer table
         /// </summary>
         /// <returns></returns>
-        public List<Customer> GetAllCustomers()
+        public List<CustomerViewModel> GetAllCustomers()
         {
-            List<Customer> customers = new List<Customer>();
-            customers = db.Customer.ToList();
+            List<CustomerViewModel> customers = new List<CustomerViewModel>();
+            var customer = db.Customer;
+
+            foreach (Customer cust in customer)
+            {
+                CustomerViewModel viewModel = new CustomerViewModel
+                {
+                    CustomerId = cust.CustomerID,
+                    FirstName = cust.FirstName,
+                    Surname = cust.Surname,
+                    AddressType = cust.AddressType,
+                    City = cust.City,
+                    PostalCode = cust.PostalCode,
+                    StreetAddress = cust.StreetAddress,
+                    Surburb = cust.Surburb,
+                };
+                customers.Add(viewModel);
+            }
+
             return customers;
         }
 
@@ -45,10 +62,9 @@ namespace SingularStaffOrders.Controllers.Helpers
         /// Update customer details
         /// </summary>
         /// <param name="customerID"></param>
-        public void UpdateCustomer(int customerID)
+        public void UpdateCustomer(CustomerViewModel customerView)
         {
-            CustomerViewModel customerView = new CustomerViewModel();
-            Customer customer = (from x in db.Customer where x.CustomerID == customerID select x).FirstOrDefault();
+            Customer customer = db.Customer.Where(x => x.CustomerID == customerView.CustomerId).FirstOrDefault();
             if (customer != null)
             {
                 customer.FirstName = customerView.FirstName;
@@ -68,7 +84,13 @@ namespace SingularStaffOrders.Controllers.Helpers
         /// <param name="customerID"></param>
         public void DeleteCustomer(int customerID)
         {
-            var update = (from x in db.Customer where x.CustomerID == customerID select x).First();
+            Customer customer = db.Customer.Where(x => x.CustomerID == customerID).FirstOrDefault();
+            if (customer != null)
+            {
+                throw new Exception("Error when deleting customer");
+            }
+            db.Customer.Remove(customer);
+            db.SaveChanges();
         }
     }
 }

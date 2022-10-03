@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SingularStaffOrders.Models.ViewModels.CustomerViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4>List of Customers</h4>
+
+<p>
+    @Html.ActionLink("Add New Customer", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surburb)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surburb)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { CustomerId = item.CustomerId }) |
+                @Html.ActionLink("Delete", "Delete", new { CustomerId = item.CustomerId }, new { onclick = "return confirm('Are you sure you want to delete?');" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+

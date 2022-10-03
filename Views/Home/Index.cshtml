@@ -37,19 +37,6 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 }
             </div>
-            <div class="row">
-                <br />
-                <div id='Paging' style="text-align: center">
-                    @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-                    of @Model.PageCount
-                    @using PagedList.Mvc;
-                    <br />
-                    <div style="text-align: center">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new { page }))
-                    </div>*@
-                </div>
-            </div>
-
         </div>
     </div>
 </div>

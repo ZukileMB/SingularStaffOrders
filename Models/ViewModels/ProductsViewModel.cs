@@ -9,7 +9,6 @@ namespace SingularStaffOrders.Models.ViewModels
 {
     public class ProductsViewModel
     {
-
         public int ProductId { get; set; }
         [Display(Name = "Title")]
         public string ProductTitle { get; set; }
@@ -18,7 +17,5 @@ namespace SingularStaffOrders.Models.ViewModels
         [Display(Name = "Unit Price")]
         public decimal Price { get; set; }
         public string Image { get; set; }
-
-        public IEnumerable<SelectListItem> selectListItems { get; set; }
     }
 }

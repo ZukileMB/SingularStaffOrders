@@ -44,6 +44,7 @@ namespace SingularStaffOrders.Controllers
         /// <summary>
         /// when you click place order method this create order
         /// update the cart quantity once the order has been placed
+        /// in Here i am not sure whether to link the customer with ID for now setting 1 as Customer 
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
