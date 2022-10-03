@@ -19,19 +19,34 @@ namespace SingularStaffOrders.Controllers
             return View(cart);
         }
 
-
+        /// <summary>
+        /// Partial that handles the activities in the cart 
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         [HttpGet]
         public PartialViewResult AddToCartAction(ProductsViewModel product)
         {
             return PartialView("~/Views/Cart/PartialViews/_AddToCartPartial.cshtml", product);
         }
 
+        /// <summary>
+        /// Update cart with the quantity 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpGet]
         public PartialViewResult UpdateQuantityAction(CartItem model)
         {
             return PartialView("~/Views/Cart/PartialViews/_UpdateQuantityInCart.cshtml", model);
         }
 
+        /// <summary>
+        /// when you click place order method this create order
+        /// update the cart quantity once the order has been placed
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public ActionResult Checkout()
         {
             OrderHelper orderHelper = new OrderHelper();

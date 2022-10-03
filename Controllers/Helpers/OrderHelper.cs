@@ -12,6 +12,11 @@ namespace SingularStaffOrders.Controllers.Helpers
     {
         private DatabaseContext db = new DatabaseContext();
 
+        /// <summary>
+        /// Method that creates an order for the specific customer
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
         public int CreateOrder(int customerId)
         {
             Orders orders = new Orders();
@@ -24,6 +29,11 @@ namespace SingularStaffOrders.Controllers.Helpers
             return (orders.OrderNo);
         }
 
+        /// <summary>
+        /// Called once the order placed to stored the details of the order in the DB
+        /// </summary>
+        /// <param name="cartItems"></param>
+        /// <param name="orderNo"></param>
         public void AddOrderDetails(List<CartItem> cartItems, int orderNo)
         {
             List<OrderDetails> ordersDetails = new List<OrderDetails>();

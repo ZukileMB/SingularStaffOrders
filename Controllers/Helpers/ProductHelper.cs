@@ -86,7 +86,7 @@ namespace SingularStaffOrders.Controllers.Helpers
         }
 
         /// <summary> 
-        /// 
+        /// Format currency 
         /// </summary>
         /// <param name="amount"></param>
         /// <returns></returns>

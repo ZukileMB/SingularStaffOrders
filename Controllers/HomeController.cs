@@ -21,6 +21,12 @@ namespace SingularStaffOrders.Controllers
             return View(products);
         }
 
+        /// <summary>
+        /// Get product details for the specific product
+        /// i.e when you click the product image
+        /// </summary>
+        /// <param name="ProductID"></param>
+        /// <returns></returns>
         public ActionResult ViewProduct(int ProductID)
         {
             ProductsViewModel products = new ProductsViewModel();
@@ -28,6 +34,11 @@ namespace SingularStaffOrders.Controllers
             return View(products);
         }
 
+        /// <summary>
+        /// Add products to Cart
+        /// </summary>
+        /// <param name="productsViewModel"></param>
+        /// <returns></returns>
         public ActionResult AddToCart(ProductsViewModel productsViewModel)
         {
             ProductsViewModel product = new ProductsViewModel();
@@ -41,6 +52,11 @@ namespace SingularStaffOrders.Controllers
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK,"Item Added to cart");
         }
 
+        /// <summary>
+        /// Update Cart quantity this happens on the browser
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult UpdateQuantity(CartItem model)
         {
@@ -66,6 +82,11 @@ namespace SingularStaffOrders.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK, "Cart updated");
         }
 
+        /// <summary>
+        /// Remove Item on the cart 
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult RemoveFromCart(int productId)
         {

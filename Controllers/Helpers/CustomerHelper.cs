@@ -8,7 +8,7 @@ using System.Web;
 
 namespace SingularStaffOrders.Controllers.Helpers
 {
-    public class CustomerHelper 
+    public class CustomerHelper
     {
         private DatabaseContext db = new DatabaseContext();
 
@@ -27,15 +27,15 @@ namespace SingularStaffOrders.Controllers.Helpers
         /// Add new Customer details 
         /// </summary>
         /// <param name="customerView"></param>
-        public void SaveCutomer( CustomerViewModel customerView)
+        public void SaveCutomer(CustomerViewModel customerView)
         {
             Customer customer = new Customer();
-            customer.FirstName =customerView.FirstName;
+            customer.FirstName = customerView.FirstName;
             customer.Surname = customerView.Surname;
             customer.AddressType = customerView.AddressType;
             customer.StreetAddress = customerView.StreetAddress;
-            customer.City = customerView.City;  
-            customer.PostalCode = customerView.PostalCode;  
+            customer.City = customerView.City;
+            customer.PostalCode = customerView.PostalCode;
 
             db.Customer.Add(customer);
             db.SaveChanges();
@@ -49,18 +49,17 @@ namespace SingularStaffOrders.Controllers.Helpers
         {
             CustomerViewModel customerView = new CustomerViewModel();
             Customer customer = (from x in db.Customer where x.CustomerID == customerID select x).FirstOrDefault();
-             if (customer != null)
+            if (customer != null)
             {
                 customer.FirstName = customerView.FirstName;
                 customer.Surname = customerView.Surname;
                 customer.AddressType = customerView.AddressType;
                 customer.StreetAddress = customerView.StreetAddress;
                 customer.City = customerView.City;
-                customer.PostalCode= customerView.PostalCode;
+                customer.PostalCode = customerView.PostalCode;
 
                 db.SaveChanges();
             }
-
         }
 
         /// <summary>
