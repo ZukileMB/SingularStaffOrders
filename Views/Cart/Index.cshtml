@@ -1,0 +1,92 @@
+﻿@model SingularStaffOrders.Models.Cart
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="jobs">
+    <h4>Shopping Cart</h4>
+
+    <div class="companies">
+        <div class="form-group">
+            <div class="col-sm-12 col-md-12">
+                <div class="col-sm-9 col-md-9">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model.Items)
+                        {
+                            <div class="company-list">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2">
+                                        <div class="company-logo">
+                                            <img src="~/Images/Mobile/@item.Product.Image" class="img-responsive" alt="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-10 col-sm-10">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-8">
+                                                <div class="company-content">
+                                                    <h3>@item.Product.ProductTitle</h3>
+                                                    <p class="ellipsisP">@item.Product.Description</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="row">
+                                                    <h4><strong class="pull-left">R @SingularStaffOrders.Controllers.Helpers.ProductHelper.ConvertToCurrency(item.TotalAmountToPay)</strong></h4>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    @{ Html.RenderAction("UpdateQuantityAction", "Cart", new { model = item }); }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="company-content">
+                                                    <a href="@Url.Action("RemoveFromCart","Home",new { productId=item.Product.ProductId })" class="">   <i class="fa fa-trash fa-lg"> </i>&nbsp; Remove</a>
+                                                    <a href="" class="">   <i class="fa fa-heart-o fa-lg"></i>&nbsp; Add To Wishlist </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p>Your cart is empty</p>
+                    }
+                </div>
+
+                @if (Model != null)
+                {
+                    <div class="col-sm-3 col-md-3">
+                        <div class="company-list">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                    <h7>Cart Summary &nbsp; (@Model.TotalItemsInCart Items)</h7>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <p><strong>TOTAL:&nbsp; R @SingularStaffOrders.Controllers.Helpers.ProductHelper.ConvertToCurrency(Model.TotalAmount) </strong></p>
+                                </div>
+                                @if (Model.TotalItemsInCart > 0)
+                                {
+                                    <div class="col-sm-12 col-md-12">
+
+                                        @using (Ajax.BeginForm("Checkout", "Cart", new AjaxOptions { HttpMethod = "POST", LoadingElementId = "progress", OnSuccess = "OnPaymentSuccess", OnFailure = "OnPaymentFailure" }))
+                                        {
+                                            <button type="submit" id="btnCheckout" class="btn btn-success"> Place Order</button>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

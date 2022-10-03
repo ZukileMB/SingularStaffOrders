@@ -1,38 +1,55 @@
-﻿@{
+﻿@model IEnumerable<SingularStaffOrders.Models.ViewModels.ProductsViewModel>
+@{
     ViewBag.Title = "Home Page";
 }
-<body>
-    <div class="div-container">
-        <div class="panel-heading">
-            <b>Welcome to the Shopping App</b> 
-        </div><!--Div Header-->
-        <div class="panel">
-            <ul id="menuApp" class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="Home"></a>
-                </li>
-                <li class="dropdown">
-                    <a href="Products"></a>
-                </li>
-                <li class="dropdown">
-                    <a href="Staff Member Details"></a>
-                </li>
-            </ul>
-        </div><!--Div Top menu-->
+<h3>Products </h3>
+<div class="form-horizontal">
 
-        <div class="panel-body">
-        <div class="panel-title">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Product</a></li>
-            </ul>
-            <div class="panel-body">
-                frgmergtjnmegrfbe
-                wdfcnsdfs fasdsf sd vsd
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-md-6">
+                        <div class="card card-price">
+                            <div class="card-img">
+                                <a href="@Url.Action("ViewProduct", "Home",new { productId = item.ProductId})">
+                                    <img src="~/Images/Mobile/@item.Image" class="img-responsive" style="height: 355px !important;">
+                                    <div class="card-caption">
+                                        <span class="h2"></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <div class="price">R @SingularStaffOrders.Controllers.Helpers.ProductHelper.ConvertToCurrency(item.Price) <small>each</small></div>
+                                <div class="lead">
+                                    @item.ProductTitle
+                                </div>
+
+                                <div class="text-center">
+                                    @{ Html.RenderAction("AddToCartAction", "Cart", item); }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                }
             </div>
-        </div>   
-            
-            </div> <!--Main div-->
-        <div class="panel-footer"></div>
+            <div class="row">
+                <br />
+                <div id='Paging' style="text-align: center">
+                    @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                    of @Model.PageCount
+                    @using PagedList.Mvc;
+                    <br />
+                    <div style="text-align: center">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new { page }))
+                    </div>*@
+                </div>
+            </div>
+
+        </div>
     </div>
-</body>
+</div>

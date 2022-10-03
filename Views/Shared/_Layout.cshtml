@@ -16,13 +16,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Staff Orders", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Customer Orders", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Staff Orders", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Products", "Index", "Products")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <ul class="nav navbar-nav" >
+                    <li class="active">
+                        <a href="@Url.Action("Index", "Cart")">
+                            <span class="fa fa-shopping-cart fa-lg" style="color:green"></span> &nbsp; Cart&nbsp;<span class="badge">@SingularStaffOrders.Utility.SessionContext.NoOfItemsInCart</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -31,12 +33,44 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Singular Assessment</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script type="text/javascript">
+        function OnAddToCartSuccess(response) {
+            window.location.href = window.location.href;
+        }
+        function OnAddToCartFailure(response) {
+            alert("Error occured.");
+        }
+
+        function OnUpdateSuccess(response) {
+            window.location.href = window.location.href;
+        }
+        function OnUpdateFailure(response) {
+            alert("Error occured.");
+        }
+
+        function onAddToCartBegin() {
+            $(this).closest('form').find('button').text("Adding.....");
+        }
+
+        function OnPaymentSuccess(response) {
+            alert("An Order has been placed");
+            window.location.href ='@Url.Action("Index", "Home")';
+        }
+        function OnPaymentFailure(response) {
+            alert("Error occured.");
+        }
+
+    </script>
 </body>
 </html>

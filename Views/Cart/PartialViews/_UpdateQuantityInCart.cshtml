@@ -1,0 +1,23 @@
+﻿@model SingularStaffOrders.Models.CartItem
+@using (Ajax.BeginForm("UpdateQuantity", "Home", new AjaxOptions { HttpMethod = "POST", LoadingElementId = "progress", OnSuccess = "OnUpdateSuccess", OnFailure = "OnUpdateFailure" }))
+{
+    @Html.HiddenFor(m => m.Product.ProductId)
+    @Html.HiddenFor(m => m.Product.ProductTitle)
+    @Html.HiddenFor(m => m.Product.Description)
+    @Html.HiddenFor(m => m.Product.Image)
+    @Html.HiddenFor(m => m.Product.Price)
+
+    <div class="input-group input-group-sm">
+        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control form-group-sm", @disabled = "disabled" } })
+
+        <span class="input-group-btn">
+            <button class="btn btn-default btn-sm " name="submitButton" value="minus"><i class="glyphicon glyphicon-minus"></i></button>
+        </span>
+        <span class="input-group-btn">
+            <button class="btn btn-default btn-sm" name="submitButton" value="plus"><i class="glyphicon glyphicon-plus"></i></button>
+        </span>
+    </div>
+
+}
+
+

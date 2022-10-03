@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SingularStaffOrders.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,14 +17,14 @@ namespace SingularStaffOrders.Models
         public decimal TotalAmount { get; set; }
         public decimal TotalDiscount { get; set; }
 
-        public Cart GetCart(List<Product> products)
+        public Cart GetCart(List<ProductsViewModel> products)
         {
             List<CartItem> items = products.GroupBy(c => c.ProductId)
                 .Select(prod => new CartItem
                 {
                     Product = prod.First(),
                     Quantity = prod.Count(),
-                    TotalAmountToPay = prod.Sum(c => c.UnitPrice)
+                    TotalAmountToPay = prod.Sum(c => c.Price)
                 }).ToList();
 
             return new Cart

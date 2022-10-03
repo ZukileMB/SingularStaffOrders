@@ -12,7 +12,7 @@ namespace SingularStaffOrders.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = false;
+            AutomaticMigrationDataLossAllowed = true;
             MigrationsDirectory = "Migrations";
         }
 

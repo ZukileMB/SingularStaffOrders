@@ -1,0 +1,44 @@
+﻿@model SingularStaffOrders.Models.ViewModels.ProductsViewModel
+@{
+    ViewBag.Title = "ViewProduct";
+}
+
+<h3>Product Specification</h3>
+@if (Model != null)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.ProductTitle</div>
+        <div class="panel-body">
+            <div class="col-sm-3 col-md-6" style="color:blue">
+                <a href="" class="cloud-zoom" rel="adjustX: 10, adjustY:-4">
+                    <img src="~/Images/Mobile/@Model.Image" width="400" height="400" />
+                </a>
+
+            </div>
+            <div class="col-sm-9 col-md-6">
+                <h3><span id="mobilename" style="color:black"><b>Product Name:</b></span></h3>
+
+                <h6><span id="mobilename" style="color:black">@Model.ProductTitle</span></h6>
+
+                <h3><span id="mobilename" style="color:black"><b>Description:</b></span></h3>
+
+                <h6><span id="mobilename" style="color:black">@Model.Description</span></h6>
+
+                <h3><span id="mobilename" style="color:black"><b>Price:</b></span></h3>
+                <h4><span id="mobilename" style="color:black">R @SingularStaffOrders.Controllers.Helpers.ProductHelper.ConvertToCurrency(Model.Price) </span></h4>
+
+                @{ Html.RenderAction("AddToCartAction", "Cart", Model); }
+                @Html.ActionLink("Continue Shopping", "Index", "Home")
+            </div>
+        </div>
+
+
+    </div>
+
+}
+else
+{
+    <a id="btn_add" href="@Url.Action("Index", "Home")" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-eye-open"></span> Continue shopping
+    </a>
+}

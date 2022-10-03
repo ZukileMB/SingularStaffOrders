@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SingularStaffOrders.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,9 @@ namespace SingularStaffOrders.Models
     {
         public CartItem()
         {
-            Product = new Product();
+            Product = new ProductsViewModel();
         }
-        public Product Product { get; set; }
+        public ProductsViewModel Product { get; set; }
 
         public int Quantity { get; set; }
 
