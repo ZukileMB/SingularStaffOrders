@@ -20,7 +20,7 @@
                 @Html.ActionLink("Customers", "Index", "Customer", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" >
+                <ul class="nav navbar-nav">
                     <li class="active">
                         <a href="@Url.Action("Index", "Cart")">
                             <span class="fa fa-shopping-cart fa-lg" style="color:green"></span> &nbsp; Cart&nbsp;<span class="badge">@SingularStaffOrders.Utility.SessionContext.NoOfItemsInCart</span>
@@ -71,7 +71,28 @@
         function OnPaymentFailure(response) {
             alert("Error occured.");
         }
-
+        function InitializeTable(response) {
+           $('#CustomerDetails').DataTable(
+               {
+                   paging: false,
+                   scrolling: false,
+                   searching: true,
+                   ordering: true,
+                   screenY: 250,
+                   columns: [
+                            { "type": "string" },//First Name
+                            { "type": "string" },//Surname
+                            { "type": "string" },//Suburb
+                            { "type": "string" },//City
+                            { "type": "string" },//Address Type
+                            { "type": "string" },//Street Address
+                            { "type": "string" },// Postal Code
+                            { "type": "html" }// buttons Edit /Delete
+                   ],
+                   order: [[0, 'asc']]
+               }
+           ).draw();
+        }
     </script>
 </body>
 </html>

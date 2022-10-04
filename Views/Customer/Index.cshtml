@@ -8,41 +8,71 @@
 <p>
     @Html.ActionLink("Add New Customer", "Create")
 </p>
-<table class="table">
-    <tr>
-
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Surname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Surburb)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="CustomerDetails" class="table table-striped table-condensed">
+    <thead>
         <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surburb)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { CustomerId = item.CustomerId }) |
-                @Html.ActionLink("Delete", "Delete", new { CustomerId = item.CustomerId }, new { onclick = "return confirm('Are you sure you want to delete?');" })
-            </td>
+            <th class="col-md-1" style="vertical-align:top">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th class="col-md-1" style="vertical-align:top">
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th class="col-md-1" style="vertical-align:top">
+                @Html.DisplayNameFor(model => model.Surburb)
+            </th>
+            <th class="col-md-1" style="vertical-align:top">
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th class="col-md-1" style="vertical-align:top">
+                @Html.DisplayNameFor(model => model.AddressType)
+            </th>
+            <th class="col-md-1" style="vertical-align:top">
+                @Html.DisplayNameFor(model => model.StreetAddress)
+            </th>
+            <th class="col-md-1" style="vertical-align:top">
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th class="col-md-2"></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
 
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surburb)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StreetAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostalCode)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { CustomerId = item.CustomerId }) |
+                    @Html.ActionLink("Delete", "Delete", new { CustomerId = item.CustomerId }, new { onclick = "return confirm('Are you sure you want to delete?');" })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        InitializeTable();
+</script>
 
 

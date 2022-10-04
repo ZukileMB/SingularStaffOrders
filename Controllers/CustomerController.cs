@@ -78,12 +78,12 @@ namespace SingularStaffOrders.Controllers
                     CustomerViewModel.PostalCode = customer.PostalCode;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("An error when trying to edit customer" + ex.Message);
             }
 
-            return View(CustomerViewModel);     
+            return View(CustomerViewModel);
         }
 
         /// <summary>
@@ -113,17 +113,18 @@ namespace SingularStaffOrders.Controllers
         /// <summary>
         /// Delete customer
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="CustomerId"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public ActionResult Delete (int CustomerId)
+        public ActionResult Delete(int CustomerId)
         {
             try
             {
                 customerHelper.DeleteCustomer(CustomerId);
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                throw new Exception("Cannot delete customer"+ex.Message);   
+                throw new Exception("Cannot delete customer" + ex.Message);
             }
             return RedirectToAction("Index");
         }
