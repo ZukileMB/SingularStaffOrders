@@ -116,11 +116,11 @@ namespace SingularStaffOrders.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public ActionResult Delete (int id)
+        public ActionResult Delete (int CustomerId)
         {
             try
             {
-                customerHelper.DeleteCustomer(id);
+                customerHelper.DeleteCustomer(CustomerId);
             }catch (Exception ex)
             {
                 throw new Exception("Cannot delete customer"+ex.Message);   
